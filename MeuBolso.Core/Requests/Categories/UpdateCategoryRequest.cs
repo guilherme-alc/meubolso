@@ -4,6 +4,8 @@ namespace MeuBolso.Core.Requests.Categories
 {
     public class UpdateCategoryRequest : Request
     {
+        [Required(ErrorMessage = "O Id é necessário.")]
+        public long Id { get; set; }
         [Required(ErrorMessage = "O título é necessário.")]
         [StringLength(80, MinimumLength = 4, ErrorMessage = "O título deve conter de 4 até até 80 caracteres.")]
         public string Title { get; set; } = string.Empty;

@@ -1,6 +1,6 @@
 ﻿namespace MeuBolso.Core.Requests.Categories
 {
-    class GetAllCategoriesRequest : PagedRequest
+    public class GetAllCategoriesRequest : PagedRequest
     {
 
     }
