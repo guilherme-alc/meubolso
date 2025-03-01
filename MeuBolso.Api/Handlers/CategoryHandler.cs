@@ -9,14 +9,41 @@ namespace MeuBolso.Api.Handlers
 {
     public class CategoryHandler(AppDbContext context) : ICategoryHandler
     {
-        public Task<Response<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)
+        public async Task<PagedResponse<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)
         {
-            throw new NotImplementedException();
+            var query = context
+                .Categories
+                .AsNoTracking()
+                .OrderBy(c => c.Title);
+
+            var categories = await query
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
+
+            var count = await query
+                .CountAsync();
+
+            return new PagedResponse<List<Category>>(categories, count, request.PageNumber, request.PageSize);
         }
 
-        public Task<Response<Category>> GetByIdAsync(GetCategoryByIdRequest request)
+        public async Task<Response<Category>> GetByIdAsync(GetCategoryByIdRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var category = await context.Categories
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(c => c.Id == request.Id);
+
+                if (category is null)
+                    return new Response<Category>(null, 404, "Categoria não encontrada.");
+
+                return new Response<Category>(category, 200, "Categoria encontrada com sucesso!");
+            }
+            catch
+            {
+                return new Response<Category>(null, 500, "Não foi possível buscar a categoria.");
+            }
         }
         public async Task<Response<Category>> CreateAsync(CreateCategoryRequest request)
         {
