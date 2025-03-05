@@ -12,12 +12,11 @@ namespace MeuBolso.Api.Data
             
         }
         public DbSet<Category> Categories { get; set; } = null!;
-        protected DbSet<Transaction> Transactions { get; set; } = null!;
+        public DbSet<Transaction> Transactions { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CategoryMapping());
             modelBuilder.ApplyConfiguration(new TransactionMapping());
-
         }
     }
 }
