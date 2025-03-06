@@ -33,7 +33,7 @@ namespace MeuBolso.Api.Handlers
             {
                 var category = await context.Categories
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(c => c.Id == request.Id);
+                    .FirstOrDefaultAsync(c => c.Id == request.Id && c.UserId == request.UserId);
 
                 if (category is null)
                     return new Response<Category>(null, 404, "Categoria não encontrada.");
@@ -69,7 +69,7 @@ namespace MeuBolso.Api.Handlers
         {
             try
             {
-                var category = await context.Categories.FirstOrDefaultAsync(c => c.Id == request.Id);
+                var category = await context.Categories.FirstOrDefaultAsync(c => c.Id == request.Id && c.UserId == request.UserId);
 
                 if (category is null)
                     return new Response<Category>(null, 404, "Categoria não encontrada.");
@@ -91,7 +91,7 @@ namespace MeuBolso.Api.Handlers
         {
             try
             {
-                var category = await context.Categories.FirstOrDefaultAsync(c => c.Id == request.Id);
+                var category = await context.Categories.FirstOrDefaultAsync(c => c.Id == request.Id && c.UserId == request.UserId);
 
                 if (category is null)
                     return new Response<Category>(null, 404, "Categoria não encontrada.");
