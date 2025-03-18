@@ -1,5 +1,6 @@
 ﻿using MeuBolso.Api.Common.Api;
 using MeuBolso.Api.Endpoints.Categories;
+using MeuBolso.Api.Endpoints.Transactions;
 
 namespace MeuBolso.Api.Endpoints
 {
@@ -19,6 +20,15 @@ namespace MeuBolso.Api.Endpoints
                 .MapEndpoint<DeleteCategoryEndpoint>()
                 .MapEndpoint<GetCategorieByIdEndpoint>()
                 .MapEndpoint<GetAllCategoriesEndpoint>();
+
+            endpoints.MapGroup("v1/categories")
+                .WithTags("Categories")
+                //.RequireAuthorization()
+                .MapEndpoint<CreateTransactionEndpoint>()
+                .MapEndpoint<UpdateTransactionEndpoint>()
+                .MapEndpoint<DeleteTransactionEndpoint>()
+                .MapEndpoint<GetTransactionByIdEndpoint>()
+                .MapEndpoint<GetTransactionsByPeriodEndpoint>();
         }
 
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)

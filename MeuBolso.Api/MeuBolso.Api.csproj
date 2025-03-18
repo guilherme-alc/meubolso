@@ -21,8 +21,4 @@
     <ProjectReference Include="..\MeuBolso.Core\MeuBolso.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Endpoints\Transactions\" />
-  </ItemGroup>
-
 </Project>
