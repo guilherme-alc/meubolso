@@ -29,6 +29,7 @@ namespace MeuBolso.Api.Endpoints.Transactions
         {
             var request = new GetTransactionsByPeriodRequest()
             {
+                UserId = "teste@teste.com",
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 StartDate = startDate,

@@ -21,8 +21,8 @@ namespace MeuBolso.Api.Endpoints
                 .MapEndpoint<GetCategorieByIdEndpoint>()
                 .MapEndpoint<GetAllCategoriesEndpoint>();
 
-            endpoints.MapGroup("v1/categories")
-                .WithTags("Categories")
+            endpoints.MapGroup("v1/transactions")
+                .WithTags("Transactions")
                 //.RequireAuthorization()
                 .MapEndpoint<CreateTransactionEndpoint>()
                 .MapEndpoint<UpdateTransactionEndpoint>()

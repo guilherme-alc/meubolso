@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(
     );
 
 builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
+builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
 
 // Adiciona suporte para Open Api
 builder.Services.AddEndpointsApiExplorer();
